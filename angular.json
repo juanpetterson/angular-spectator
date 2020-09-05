@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "angular-spectator"
+    }
+  },
+  "defaultProject": "angular-spectator",
+  "cli": {
+    "analytics": false
+  }
 }
