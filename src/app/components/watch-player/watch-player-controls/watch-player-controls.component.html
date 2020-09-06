@@ -1,0 +1,75 @@
+<div class="controls">
+  <div class="controls__container">
+    <div class="controls__left">
+      <button
+        id="play"
+        class="controls__button"
+        *ngIf="!mediaState.playing"
+        (click)="onPlay()"
+      >
+        <i class="fas fa-play controls__button-icon"></i>
+      </button>
+      <button
+        id="pause"
+        class="controls__button"
+        *ngIf="mediaState.playing"
+        (click)="onPause()"
+      >
+        <i class="fas fa-pause controls__button-icon"></i>
+      </button>
+      <button id="seek-back" class="controls__button" (click)="onSeekBack()">
+        <i class="fas fa-undo-alt controls__button-icon"></i>
+      </button>
+      <button
+        id="seek-forward"
+        class="controls__button"
+        (click)="onSeekForward()"
+      >
+        <i class="fas fa-redo controls__button-icon"></i>
+      </button>
+      <button
+        id="mute"
+        class="controls__button"
+        *ngIf="!mediaState.muted"
+        (click)="onMute()"
+      >
+        <i class="fas fa-volume-up controls__button-icon"></i>
+      </button>
+      <button
+        id="unmute"
+        class="controls__button"
+        *ngIf="mediaState.muted"
+        (click)="onUnmute()"
+      >
+        <i class="fas fa-volume-mute controls__button-icon"></i>
+      </button>
+    </div>
+    <div class="controls__center">
+      <span class="controls__center-title">{{ mediaState.title }}</span>
+    </div>
+    <div class="controls__right">
+      <button class="controls__button">
+        <i class="far fa-question-circle controls__button-icon"></i>
+      </button>
+      <button
+        id="fullscreen"
+        class="controls__button"
+        *ngIf="!mediaState.fullscreen"
+        (click)="onFullscreen()"
+      >
+        <i class="fas fa-expand controls__button-icon"></i>
+      </button>
+      <button
+        id="fullscreen-exit"
+        class="controls__button"
+        *ngIf="mediaState.fullscreen"
+        (click)="onFullscreenExit()"
+      >
+        <i
+          class="fas fa-compress controls__button-icon"
+          *ngIf="mediaState.fullscreen"
+        ></i>
+      </button>
+    </div>
+  </div>
+</div>

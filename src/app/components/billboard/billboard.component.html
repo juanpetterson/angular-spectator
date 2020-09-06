@@ -1,0 +1,42 @@
+<div class="billboard">
+  <div class="billboard__container">
+    <div class="billboard__details">
+      <img [src]="media.thumbnailLogo" class="billboard__thumbnail-logo" />
+      <div class="billboard__synopsis">
+        <div>{{ media.synopsis }}</div>
+      </div>
+      <div class="billboard__buttons">
+        <div class="billboard__button-wrapper">
+          <button
+            id="play"
+            class="billboard__button"
+            [routerLink]="['/watch', media.id]"
+          >
+            <div class="billboard__button-icon">
+              <i class="fas fa-play"></i>
+            </div>
+            <span>Play</span>
+          </button>
+        </div>
+        <div class="billboard__button-wrapper">
+          <button class="billboard__button">
+            <div class="billboard__button-icon billboard__button-icon--rounded">
+              <i class="fas fa-info"></i>
+            </div>
+            <span>More Info</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="billboard__maturity">
+      <div class="billboard__maturity-container">
+        <div class="billboard__maturity-rating" appMaturityStyle>
+          {{ media.maturity }}
+        </div>
+      </div>
+    </div>
+    <div class="billboard__background">
+      <img class="billboard__image" [src]="media.billboard" />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="media-slider">
+  <div class="media-slider__header">
+    <span class="media-slider__title">{{ listTitle }}</span>
+    <div class="media-slider__pages-count">
+      <ul
+        class="pages-count"
+        [style.visibility]="showPagesCount ? 'visible' : 'hidden'"
+      >
+        <li
+          class="pages-count__item"
+          *ngFor="let page of totalPages; let i = index"
+          [ngClass]="{
+            'pages-count__item--active': i === currentPage
+          }"
+        ></li>
+      </ul>
+    </div>
+  </div>
+  <div
+    class="slider"
+    (mouseenter)="onEnterSlider()"
+    (mouseleave)="onLeaveSlider()"
+    [ngClass]="{ 'slider--hover': hoverSlide }"
+  >
+    <div class="slider__container" #slider>
+      <app-media-slider-item
+        class="slider__item"
+        *ngFor="let media of sliderItems; let i = index"
+        [media]="media"
+        [style.transform]="getTranformStyle(i)"
+        [ngClass]="{ 'slider__item--hover': canHover() }"
+        [activeMedia]="activeMedia"
+        [isOriginals]="isOriginals"
+        (mouseenter)="onHoverItem(i)"
+        (mouseleave)="onLeaveItem()"
+        (activeMediaChange)="onActiveMediaChange($event)"
+      ></app-media-slider-item>
+    </div>
+    <div
+      *ngIf="showPrev"
+      class="slider__left-arrow"
+      ref="leftArrow"
+      (click)="handlePrevious()"
+    >
+      <i
+        class="fas fa-chevron-left"
+        [style.visibility]="hoverSlide ? 'visible' : 'hidden'"
+      ></i>
+    </div>
+    <div
+      *ngIf="showNext"
+      class="slider__right-arrow"
+      ref="rightArrow"
+      (click)="handleNext()"
+    >
+      <i
+        class="fas fa-chevron-right"
+        [style.visibility]="hoverSlide ? 'visible' : 'hidden'"
+      ></i>
+    </div>
+  </div>
+  <app-media-slider-details
+    *ngIf="activeMedia"
+    [activeMedia]="activeMedia"
+    (closeMediaEvent)="onCloseMedia()"
+  ></app-media-slider-details>
+</div>

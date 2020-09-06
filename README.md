@@ -1,27 +1,116 @@
-# AngularSpectator
+# Netflix Angular
+> This project is a mini Netflix clone application made with Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.6.
+## Table of contents
+* [Features](#features)
+* [Roadmap](#roadmap)
+* [Built With](#built-with)
+* [Prerequisites](#prerequisites)
+* [Installing](#installing)
+* [Login to application](#how-to-login-into-the-application)
+* [Application preview](#application-preview)
+* [License](#license)
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Features
+- Login Page
+- Browse Page
+- Watch Player
+- Metrics page with Continue Watching (saved locally)
+- Media progress (saved locally)
+- Account/Profile Page
 
-## Code scaffolding
+## Roadmap
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+* Save to My List
+* Functional Billboard More Info button
+* Medias suggestion based on previous watches
+* Top 10
+	
+## Built With
+
+* [Angular](https://angular.io/docs) - The web framework used
+  
+### Prerequisites
+
+* Node 10.13 or later
+	
+## Installing
+-To run this project:
+
+Clone the repository
+```
+$ git clone https://github.com/juanpetterson/netflix-angular.git
+```
+Enter to the cloned folder
+
+```
+$ cd netflix-angular
+```
+Install the dependencies
+
+```
+$ npm install
+```
+and just run start
+```
+$ npm start
+```
+The application runs on the port 4200 by default.
+
+## Docker
+Run one of the following commands to start the app through Docker:
+
+Production version:
+
+```bash
+docker-compose up
+```
+
+Development version:
+
+```bash
+docker-compose -f docker-compose-dev.yml up
+```
+The development version runs on port 4200, and the production on port 80.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `npm build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `npm test` to execute the unit tests via Karma.
 
 ## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run `npm cypress` to run the application and the tests or `npm cypress:open` to execute the end-to-end tests via Cypress
 
-## Further help
+## How to Login into the application
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+We have two fake users it can be used:
+
+- Juan Petterson Heberle
+
+
+    email: juan@netflix.com  
+    password: juanflix  
+    
+- Sigmund Freud
+
+
+    email: freud@netflix.com  
+    password: freudflix  
+
+## Application Preview
+![Preview](https://github.com/juanpetterson/netflix-angular/blob/master/src/assets/docs/login-page.png)
+![Preview](https://github.com/juanpetterson/netflix-angular/blob/master/src/assets/docs/browse-page.png)
+![Preview](https://github.com/juanpetterson/netflix-angular/blob/master/src/assets/docs/browse-page-hover.png)
+![Preview](https://github.com/juanpetterson/netflix-angular/blob/master/src/assets/docs/browse-page-details.png)
+![Preview](https://github.com/juanpetterson/netflix-angular/blob/master/src/assets/docs/browse-page-originals.png)
+![Preview](https://github.com/juanpetterson/netflix-angular/blob/master/src/assets/docs/watch-player.png)
+![Preview](https://github.com/juanpetterson/netflix-angular/blob/master/src/assets/docs/account-page.png)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details

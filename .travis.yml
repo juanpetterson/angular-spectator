@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - 10
+addons:
+  chrome: stable
+cache:
+  npm: true
+  directories:
+    - ~/.cache
+install:
+  - npm ci
+script:
+  - npm run test:silent
+  - npm run e2e

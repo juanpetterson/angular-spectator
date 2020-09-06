@@ -1,0 +1,58 @@
+<app-header></app-header>
+<div class="login-page">
+  <div class="login-page__backdrop">
+    <div class="login-page__background">
+      <img
+        src="../../../assets/login-background-large.jpg"
+        class="login-page__background-image"
+      />
+    </div>
+  </div>
+  <div class="login-form">
+    <div class="login-form__container">
+      <h1 class="login-form__title">Sign In</h1>
+      <div class="error-box" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+      <form (ngSubmit)="onSubmit()" [formGroup]="form" class="login-form__form">
+        <input
+          class="login-form__input"
+          id="email"
+          formControlName="email"
+          type="email"
+          placeholder="Email"
+          autocomplete="off"
+          autofocus
+        />
+        <span class="login-form__error" *ngIf="email.invalid && email.dirty">
+          Please enter a valid email</span
+        >
+        <input
+          class="login-form__input"
+          id="password"
+          formControlName="password"
+          type="password"
+          placeholder="Password"
+        />
+        <span
+          class="login-form__error"
+          *ngIf="password.invalid && password.dirty"
+          >Your password must contain between 6 and 60 characters.</span
+        >
+        <button class="login-form__button" type="submit">Sign In</button>
+        <div class="login-form__footer">
+          <input
+            type="checkbox"
+            name="remember-check"
+            id="remember-check"
+            class="login-form__check"
+          />
+          <label for="remember-check" class="login-form__check-label"
+            >Remember me</label
+          >
+          <a class="login-form__help">Need help?</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+.account-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #f3f3f3;
+  color: #333;
+  font-size: 16px;
+
+  &__container {
+    margin-top: 90px;
+    display: flex;
+    justify-content: center;
+  }
+  &__content {
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 4%;
+  }
+  &__title {
+    font-size: 2vw;
+    margin-bottom: 1vw;
+  }
+  &__panel {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__panel-row {
+    display: flex;
+    border-top: 1px solid #999;
+    width: 100%;
+  }
+
+  &__row-section {
+    flex: 0 0 270px;
+    margin-top: 10px;
+  }
+
+  &__row-info {
+    flex: 1;
+  }
+
+  &__row-item {
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    &--underlined {
+      border-bottom: 1px solid #999;
+    }
+  }
+
+  &__row-item-name {
+    margin-bottom: 10px;
+  }
+}

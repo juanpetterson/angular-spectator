@@ -1,0 +1,64 @@
+<div class="header" #header>
+  <div class="header__container">
+    <a href="/browse" class="header__logo-wrapper">
+      <img src="../../../assets/logo.svg" class="header__logo" />
+    </a>
+    <div class="header__navigation" *ngIf="loggedUser">
+      <ul
+        class="header__navigation-items"
+        [style.visibility]="showNavigation ? 'visible' : 'hidden'"
+      >
+        <li class="header__navigation-item header__navigation-item--active">
+          Home
+        </li>
+        <li class="header__navigation-item">TV Shows</li>
+        <li class="header__navigation-item">Movies</li>
+        <li class="header__navigation-item">Latest</li>
+        <li class="header__navigation-item">My List</li>
+      </ul>
+      <div class="header__actions">
+        <div
+          class="header__actions-wrapper"
+          [style.visibility]="showNavigation ? 'visible' : 'hidden'"
+        >
+          <div class="header__action">
+            <button class="header__action-button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+          <div class="header__action">
+            <button class="header__action-button">
+              <i class="fas fa-gift"></i>
+            </button>
+          </div>
+          <div class="header__action">
+            <button class="header__action-button">
+              <i class="fas fa-bell"></i>
+            </button>
+          </div>
+        </div>
+        <div class="header__action">
+          <button class="header__action-button">
+            <img [src]="loggedUser.avatar" class="header__action-avatar" />
+            <i class="fas fa-caret-down header__action-dropdown"></i>
+            <div class="dropdown" #dropdown>
+              <div class="dropdown__arrow"></div>
+              <ul class="dropdown__items">
+                <li class="dropdown__item">
+                  <a class="dropdown__item-link" routerLink="/account"
+                    >Account
+                  </a>
+                </li>
+                <li class="dropdown__item">
+                  <a class="dropdown__item-link" (click)="onLogout()"
+                    >Sign out of Netflix</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

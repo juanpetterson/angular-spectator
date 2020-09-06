@@ -1,0 +1,43 @@
+<div class="loading-spinner" *ngIf="loading">
+  <img
+    src="../../../assets/spinner-loading.png"
+    class="loading-spinner__icon"
+  />
+</div>
+<div class="watch-player">
+  <video
+    id="player"
+    #player
+    [src]="media.mediaPath"
+    class="watch-player-video"
+    (click)="onTogglePlaying()"
+    (dblclick)="onToggleFullscreen()"
+  ></video>
+
+  <div class="watch-player__header" #header>
+    <div class="watch-player__header-title" *ngIf="loading">
+      {{ media.title }}
+    </div>
+    <div *ngIf="!loading" class="watch-player__header-exit">
+      <i
+        routerLink="/browse"
+        class="fas fa-arrow-left watch-player__header-icon"
+      ></i>
+      <span class="watch-player__header-tooltip">Back to Browse</span>
+    </div>
+  </div>
+  <div class="watch-player__footer" #footer>
+    <div class="progress-bar">
+      <div class="progress-bar__container">
+        <div class="progress-bar__current" [style.width]="progress + '%'"></div>
+      </div>
+      <div class="progress-bar__duration">
+        {{ (player.duration - player.currentTime) * 1000 | date: 'mm:ss' }}
+      </div>
+    </div>
+    <app-watch-player-controls
+      class="watch-player-controls"
+      [media]="media"
+    ></app-watch-player-controls>
+  </div>
+</div>

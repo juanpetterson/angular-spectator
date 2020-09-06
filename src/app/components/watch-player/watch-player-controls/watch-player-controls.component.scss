@@ -1,0 +1,45 @@
+.controls {
+  &__container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__left {
+    display: flex;
+  }
+
+  &__center {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 1;
+
+    &-title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+
+  &__right {
+    display: flex;
+  }
+
+  &__button {
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    width: 90px;
+    height: 95px;
+    cursor: pointer;
+
+    &:hover &-icon {
+      font-size: 32px;
+    }
+
+    &-icon {
+      transition: font-size 300ms ease;
+    }
+  }
+}

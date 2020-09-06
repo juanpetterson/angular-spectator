@@ -1,0 +1,87 @@
+<div
+  class="slider-item"
+  [ngClass]="{
+    'slider-item--active': active
+  }"
+  (click)="onShowDetails()"
+>
+  <div
+    class="slider-item__background"
+    [style.opacity]="activeMedia && activeMedia.id != media.id ? '0.7' : '1'"
+  >
+    <img
+      class="slider-item__background-image"
+      [src]="isOriginals ? media.poster : media.thumbnail"
+    />
+  </div>
+  <div
+    class="slider-item__content"
+    [ngClass]="{
+      'slider-item__content--active-media': activeMedia
+    }"
+  >
+    <div class="media-content">
+      <div
+        id="media-content"
+        [routerLink]="['/watch', media.id]"
+        class="media-content__play-container"
+        [style.visibility]="active ? 'visible' : 'hidden'"
+      >
+        <div class="media-content__play">
+          <i class="fas fa-play"></i>
+        </div>
+      </div>
+      <div class="media-content__container">
+        <div
+          class="media-content__wrapper"
+          [style.visibility]="activeMedia || isOriginals ? 'hidden' : 'visible'"
+        >
+          <div id="play" class="media-content__infos" (click)="onPlayMedia()">
+            <div class="media-content__button media-content__button--big">
+              <i class="fas fa-play"></i>
+            </div>
+            <span class="media-content__title">{{ media.title }}</span>
+            <div class="media-content__meta">
+              <div class="media-content__match">{{ media.match }}</div>
+              <div appMaturityStyle class="media-content__maturity">
+                {{ media.maturity }}
+              </div>
+              <div class="media-content__duration">
+                {{ media.duration }}
+              </div>
+            </div>
+            <div class="media-content__tags">
+              <span class="media-content__tag" *ngFor="let tag of media.tags"
+                >{{ tag }}
+              </span>
+            </div>
+          </div>
+          <div class="media-content__buttons">
+            <div class="media-content__button">
+              <i class="far fa-thumbs-up"></i>
+            </div>
+            <div class="media-content__button">
+              <i class="far fa-thumbs-down"></i>
+            </div>
+            <div class="media-content__button">
+              <i class="fas fa-plus"></i>
+            </div>
+          </div>
+        </div>
+        <div
+          class="media-content__arrow-down"
+          (click)="onShowDetails()"
+          [style.visibility]="activeMedia && active ? 'hidden' : 'visible'"
+        >
+          <i class="fas fa-chevron-down"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="slider-item__active-arrow"
+  [style.display]="active ? 'flex' : 'none'"
+>
+  <div class="slider-item__arrow"></div>
+</div>

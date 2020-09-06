@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  netflix-angular-dev:
+    image: netflix-angular-dev
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    ports:
+      - 4200:4200

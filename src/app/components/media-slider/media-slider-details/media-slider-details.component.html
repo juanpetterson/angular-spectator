@@ -1,0 +1,72 @@
+<div class="details" *ngIf="activeMedia">
+  <div class="details__container">
+    <div class="details__background">
+      <div class="details__sketch"></div>
+      <div
+        class="details__image"
+        [style.backgroundImage]="'url(' + activeMedia.billboard + ')'"
+      ></div>
+    </div>
+    <div class="details__infos">
+      <img [src]="activeMedia.thumbnailLogo" class="details__thumbnail-logo" />
+      <div class="details__meta">
+        <div class="details__match">{{ activeMedia.match }}</div>
+        <div class="details__last-release">{{ activeMedia.lastRelease }}</div>
+        <div class="details__maturity" appMaturityStyle>
+          {{ activeMedia.maturity }}
+        </div>
+        <div class="details__duration">{{ activeMedia.duration }}</div>
+      </div>
+      <div class="details__synopsis">{{ activeMedia.synopsis }}</div>
+      <div class="details__buttons">
+        <div class="details__button-wrapper">
+          <button
+            id="play"
+            class="details__button details__button--red"
+            [routerLink]="['/watch', activeMedia.id]"
+          >
+            <i class="fas fa-play details__button-icon"></i>
+            <span>PLAY</span>
+          </button>
+        </div>
+        <div class="details__button-wrapper">
+          <button class="details__button details__button--bordered">
+            <i class="fas fa-plus details__button-icon"></i>
+            <span>MY LIST</span>
+          </button>
+        </div>
+        <div
+          class="details__button details__button--bordered details__button--rounded"
+        >
+          <i class="far fa-thumbs-up"></i>
+        </div>
+        <div
+          class="details__button details__button--bordered details__button--rounded"
+        >
+          <i class="far fa-thumbs-down"></i>
+        </div>
+      </div>
+      <div class="details__starring">
+        <span>Starring: </span>
+        <div class="details__starring-item">
+          {{ activeMedia.starring.join(', ') }}
+        </div>
+      </div>
+      <div class="details__genres">
+        <span>Genres: </span>
+        <div class="details__genres-item">
+          {{ activeMedia.genres.join(', ') }}
+        </div>
+      </div>
+      <div class="details__tags">
+        <span>This movie is: </span>
+        <div class="details__tags-item">
+          {{ activeMedia.tags.join(', ') }}
+        </div>
+      </div>
+    </div>
+    <div class="details__close-button" (click)="onCloseMedia()">
+      <i class="fas fa-times"></i>
+    </div>
+  </div>
+</div>

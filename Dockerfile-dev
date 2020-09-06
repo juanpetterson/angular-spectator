@@ -1,0 +1,14 @@
+FROM node:10.13-alpine as node
+
+WORKDIR /app
+
+COPY package.json /app
+RUN npm install --silent
+RUN npm install @angular/cli -g
+
+COPY . .
+
+EXPOSE 4200
+
+CMD ng serve --host 0.0.0.0
+

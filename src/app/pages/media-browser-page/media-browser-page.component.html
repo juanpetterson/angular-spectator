@@ -1,0 +1,44 @@
+<app-header></app-header>
+<div class="media-browser">
+  <div class="media-browser__container">
+    <div class="media-browser__billboard">
+      <app-billboard
+        *ngIf="billboardMedia"
+        [media]="billboardMedia"
+      ></app-billboard>
+    </div>
+    <div class="media-browser__lists">
+      <app-media-slider
+        id="my-medias"
+        *ngIf="myMedias?.length"
+        [listTitle]="'Continue Watching'"
+        [medias]="myMedias"
+      ></app-media-slider>
+      <app-media-slider
+        id="popular"
+        *ngIf="medias"
+        [listTitle]="'Popular on Netflix'"
+        [medias]="medias"
+      ></app-media-slider>
+      <app-media-slider
+        id="trending"
+        *ngIf="medias"
+        [listTitle]="'Trending Now'"
+        [medias]="medias"
+      ></app-media-slider>
+      <app-media-slider
+        id="originals"
+        *ngIf="mediasOriginals"
+        [listTitle]="'NETFLIX ORIGINALS'"
+        [medias]="mediasOriginals"
+        [isOriginals]="true"
+      ></app-media-slider>
+      <app-media-slider
+        id="releases"
+        *ngIf="medias"
+        [listTitle]="'New Releases'"
+        [medias]="medias"
+      ></app-media-slider>
+    </div>
+  </div>
+</div>
