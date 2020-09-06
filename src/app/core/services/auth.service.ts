@@ -14,6 +14,8 @@ export class AuthService {
   constructor(private router: Router) {}
 
   public signIn(username: string, password: string): Observable<User> {
+    console.log('caiu no service');
+
     return new Observable((subscriber) => {
       const foundUser = users.find((user) => user.email === username);
 

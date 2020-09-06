@@ -1,69 +1,44 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Spectator, createRoutingFactory } from '@ngneat/spectator';
 
 import { LoginPageComponent } from './login-page.component';
 import { AuthService } from 'app/core/services/auth.service';
-import { DebugElement, Component, Input } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { By } from '@angular/platform-browser';
 import { of, throwError } from 'rxjs';
-import { CommonModule } from '@angular/common';
 
-export type Spied<T> = {
-  [Method in keyof T]: jasmine.Spy;
-};
-
-@Component({
-  selector: 'app-header',
-  template: '',
-})
-class MockedHeaderComponent {
-  @Input() backgroundColor = 'transparent';
-  @Input() showNavigation = true;
-}
-
-describe('LoginPageComponent', () => {
-  let component: LoginPageComponent;
-  let fixture: ComponentFixture<LoginPageComponent>;
-  let de: DebugElement;
-  let authService: Spied<AuthService>;
-  let router: Router;
-
-  beforeEach(async(() => {
-    authService = jasmine.createSpyObj('AuthService', ['signIn']);
-
-    TestBed.configureTestingModule({
-      imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        RouterTestingModule,
-      ],
-      providers: [{ provide: AuthService, useValue: authService }],
-      declarations: [LoginPageComponent, MockedHeaderComponent],
-    }).compileComponents();
-  }));
-
-  beforeEach(() => {
-    router = TestBed.inject(Router);
-
-    fixture = TestBed.createComponent(LoginPageComponent);
-    component = fixture.componentInstance;
-    component.ngOnInit();
-    de = fixture.debugElement;
-    fixture.detectChanges();
+fdescribe('LoginPageComponent', () => {
+  const errorMessage = 'Error';
+  let spectator: Spectator<LoginPageComponent>;
+  const createComponent = createRoutingFactory({
+    component: LoginPageComponent,
+    imports: [RouterTestingModule],
+    mocks: [AuthService],
+    shallow: true,
   });
 
+  beforeEach(() => (spectator = createComponent()));
+
   it('should create', () => {
+    const component = spectator.component;
     expect(component).toBeTruthy();
   });
 
+  it('should have sign in button', () => {
+    const signInButton = spectator.query('#sign-in');
+    expect(signInButton).toHaveText('Sign In');
+  });
+
+  it('should have the login-form__button class', () => {
+    const signInButton = spectator.query('#sign-in');
+    expect(signInButton).toHaveClass('login-form__button');
+  });
+
   it('should form be invalid when empty', () => {
-    expect(component.email.valid).toBeFalsy();
+    expect(spectator.component.email.valid).toBeFalsy();
   });
 
   it('should validate inputs as required', () => {
+    const component = spectator.component;
     const email = component.form.controls.email;
     const password = component.form.controls.password;
 
@@ -75,38 +50,37 @@ describe('LoginPageComponent', () => {
   });
 
   it('should appear error message if throw an error when submit', () => {
+    const component = spectator.component;
+    const authService = spectator.inject(AuthService);
+    authService.signIn.and.returnValue(throwError({ message: errorMessage }));
+
     component.form.controls.email.setValue('my@email.com');
     component.form.controls.password.setValue('123456');
     expect(component.form.valid).toBeTruthy();
 
-    const errorMessage = 'Error';
-    const error = { message: errorMessage };
-    authService.signIn.and.returnValue(throwError(error));
-    fixture.detectChanges();
-
     component.onSubmit();
-    fixture.detectChanges();
+    spectator.detectChanges();
 
     expect(component.errorMessage).toBe(errorMessage);
 
-    const errorBox = de.query(By.css('.error-box'));
+    const errorBox = spectator.query('.error-box');
     expect(errorBox).toBeTruthy();
   });
 
-  it('should invoke auth service when form is valid and navigate', () => {
-    const navigate = spyOn(router, 'navigate');
+  it('should invoke auth service when form is valid and navigate', async () => {
+    const component = spectator.component;
+    const router = spectator.inject(Router);
+    const authService = spectator.inject(AuthService);
 
     const email = component.form.controls.email;
     email.setValue('my@email.com');
     const password = component.form.controls.password;
     password.setValue('123456');
-    authService.signIn
-      .withArgs('my@email.com', '123456')
-      .and.returnValue(of('user'));
+    authService.signIn.and.returnValue(of('user'));
 
-    component.onSubmit();
+    spectator.component.onSubmit();
 
     expect(authService.signIn.calls.all().length).toEqual(1);
-    expect(navigate).toHaveBeenCalled();
+    expect(router.navigate).toHaveBeenCalled();
   });
 });

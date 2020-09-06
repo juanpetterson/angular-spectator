@@ -16,10 +16,10 @@
       </div>
       <form (ngSubmit)="onSubmit()" [formGroup]="form" class="login-form__form">
         <input
-          class="login-form__input"
           id="email"
-          formControlName="email"
+          class="login-form__input"
           type="email"
+          formControlName="email"
           placeholder="Email"
           autocomplete="off"
           autofocus
@@ -28,10 +28,10 @@
           Please enter a valid email</span
         >
         <input
-          class="login-form__input"
           id="password"
-          formControlName="password"
+          class="login-form__input"
           type="password"
+          formControlName="password"
           placeholder="Password"
         />
         <span
@@ -39,7 +39,9 @@
           *ngIf="password.invalid && password.dirty"
           >Your password must contain between 6 and 60 characters.</span
         >
-        <button class="login-form__button" type="submit">Sign In</button>
+        <button id="sign-in" class="login-form__button" type="submit">
+          Sign In
+        </button>
         <div class="login-form__footer">
           <input
             type="checkbox"
